@@ -5,9 +5,9 @@
 #include <mmsystem.h>
 #pragma comment(lib, "winmm.lib")
 
-#include "IT.h"
-#include "Person.h"
-#include "NPC.h"
+#include "it.h"
+#include "person.h"
+#include "npc.h"
 using namespace std;
 using namespace sf;
 int main()
@@ -15,12 +15,11 @@ int main()
 	PlaySound(TEXT("무궁화꽃이피었습니다.wav"), 0, SND_FILENAME | SND_ASYNC | SND_LOOP); //bgm재생
 	RenderWindow window(VideoMode(1500, 350), "Red Light, Green Light"); //윈도우 창 열기
 	window.setFramerateLimit(60);
-
 	Font font;
-	font.loadFromFile("mb.ttf");
+	font.loadFromFile("MapoDacapo.ttf");
 
 	Text text;
-	Person person;
+	//Person person;
 	while (window.isOpen())
 	{
 		Event event;
@@ -34,20 +33,22 @@ int main()
 			case Event::KeyPressed:
 				if (Keyboard::isKeyPressed(Keyboard::Left) == true)
 				{
-					person.moveLeft();
+					//person.moveLeft();
 				}
 				else if (Keyboard::isKeyPressed(Keyboard::Right) == true)
 				{
-					person.moveRight();
+					//person.moveRight();
 				}
 			default:
 				break;
 			}
 		}
-		text.setString("time: 0123456789");
+		window.clear(Color::White);
+		text.setFont(font);
+		text.setString("Time Limit  10 : 05"); //시간은 루프 돌면서 계속 업데이트 해주기
 		text.setFillColor(Color::Red);
 		text.setCharacterSize(25);
-		text.setPosition(350.0f, 0.0f);
+		text.setPosition(670.0f, 0.0f);
 		window.draw(text);
 		window.display();
 	}

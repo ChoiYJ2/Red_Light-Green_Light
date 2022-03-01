@@ -1,32 +1,41 @@
-#include <SFML/Graphics.hpp>
 #include "NPC.h"
-#include <cstdlib>
-#include <ctime>
-using namespace std;
-using namespace sf;
+#include "Sound.h"
 
-NPC::NPC()
+NPC::NPC(int _ps)
 {
 	t_npc.loadFromFile("images/NPC.png");
 	t_npc_death.loadFromFile("images/NPC_death.png");
 	s_npc.setTexture(t_npc);
-	s_npc.setPosition(20.0f, 350.0f - 110.0f);
-	srand((unsigned int)time(NULL));
-	speed = rand() % 3 + 2; //NPC마다 속도 랜덤하게 (2 ~ 5)
+	x = (float)npc_x[_ps];
+	y = (float)npc_y[_ps];
+	nspeed = (float)speed[_ps];
+	s_npc.setPosition(x, 350.0f - y);
 }
 
-void NPC::update()
+void NPC::update(IT& it, TimeText& timetext)
 {
-	Vector2f pos = s_npc.getPosition();
-	if (end == true)
+	if (NPC_end == true || NPC_stop == true)
 	{
 		return;
 	}
-	if (pos.x >= 1315.0f) // 결승선 넘어가면 움직이지 않음
+	cur_x = s_npc.getPosition().x;
+	if (cur_x >= 1350.0f)
 	{
-		end = true;
+		NPC_end = true;
 	}
-	s_npc.move(speed, 0.0f);
+	if (timetext.timeover == true || it.someoneMove(cur_x) == true)
+	{
+		NPC_end = true;
+		PlaySound(TEXT("shot.wav"), 0, SND_FILENAME | SND_ASYNC);
+		s_npc.setTextureRect(IntRect(0, 0, 65, 45));
+		s_npc.setTexture(t_npc_death);
+		s_npc.setPosition(cur_x, 350.0f - (y - 45.0f));
+	}
+	else
+	{
+		s_npc.setTexture(t_npc);
+	}
+	s_npc.move((float)nspeed, 0.0f);
 }
 
 void NPC::draw(RenderWindow& _window)

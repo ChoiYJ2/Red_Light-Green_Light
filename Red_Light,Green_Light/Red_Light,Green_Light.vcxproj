@@ -30,7 +30,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -88,7 +88,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\chldb\Downloads\SFML-2.5.1-windows-vc15-32-bit %281%29\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\chldb\Downloads\SFML-2.5.1-windows-vc15-32-bit\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,12 +145,17 @@
     <ClCompile Include="IT.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="NPC.cpp" />
-    <ClCompile Include="Person.cpp" />
+    <ClCompile Include="NPC_GEN.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="TimeText.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IT.h" />
     <ClInclude Include="NPC.h" />
-    <ClInclude Include="Person.h" />
+    <ClInclude Include="NPC_GEN.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Sound.h" />
+    <ClInclude Include="TimeText.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
